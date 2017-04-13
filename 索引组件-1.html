@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=n0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<dl class="list" id="list">
+    <dt>A</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">安</span>
+		</span>
+        安
+    </dd>
+    <dt>B</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">苞</span>
+		</span>
+        苞
+    </dd>
+    <dt>C</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">蔡律烈</span>
+		</span>
+        蔡律烈
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">岑暖起</span>
+		</span>
+        岑暖起
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">常繁坤</span>
+		</span>
+        常繁坤
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">褚瑜聚</span>
+		</span>
+        褚瑜聚
+    </dd>
+    <dt>F</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">范望桂</span>
+		</span>
+        范望桂
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">傅才共</span>
+		</span>
+        傅才共
+    </dd>
+    <dt>G</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">葛修天</span>
+		</span>
+        葛修天
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">葛耀俐</span>
+		</span>
+        葛耀俐
+    </dd>
+    <dt>L</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">李年农</span>
+		</span>
+        李年农
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">梁韦琪</span>
+		</span>
+        梁韦琪
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">林友均</span>
+		</span>
+        林友均
+    </dd>
+    <dt>M</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">穆</span>
+		</span>
+        穆
+    </dd>
+    <dt>Q</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">齐鹊盛</span>
+		</span>
+        齐鹊盛
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">钱三冰</span>
+		</span>
+        钱三冰
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">邱必霖</span>
+		</span>
+        邱必霖
+    </dd>
+    <dt>W</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">王鹏常</span>
+		</span>
+        王鹏常
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">伍弘洲</span>
+		</span>
+        伍弘洲
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">吴想康</span>
+		</span>
+        吴想康
+    </dd>
+    <dt>X</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">许冶赐</span>
+		</span>
+        许冶赐
+    </dd>
+    <dt>Y</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">杨巍龄</span>
+		</span>
+        杨巍龄
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">云绍熊</span>
+		</span>
+        云绍熊
+    </dd>
+    <dt>Z</dt>
+    <dd>
+		<span class="avatar">
+			<span class="img">张功怀</span>
+		</span>
+        张功怀
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">张霄德</span>
+		</span>
+        张霄德
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">周竟葛</span>
+		</span>
+        周竟葛
+    </dd>
+    <dd>
+		<span class="avatar">
+			<span class="img">庄木奕</span>
+		</span>
+        庄木奕
+    </dd>
+</dl>
+<nav id="nav" class="nav">
+    <ul class="navList" data-indexList="#list">
+        <li>
+            <span class="ico"></span>
+        </li>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+        <li>E</li>
+        <li>F</li>
+        <li>G</li>
+        <li>H</li>
+        <li>I</li>
+        <li>J</li>
+        <li>K</li>
+        <li>L</li>
+        <li>M</li>
+        <li>N</li>
+        <li>O</li>
+        <li>P</li>
+        <li>Q</li>
+        <li>R</li>
+        <li>S</li>
+        <li>T</li>
+        <li>U</li>
+        <li>V</li>
+        <li>W</li>
+        <li>X</li>
+        <li>Y</li>
+        <li>Z</li>
+    </ul>
+</nav>
+<script>
+    (function () {
+        var oNav = document.getElementById('nav');
+        var oNavList = oNav.querySelectorAll('.navList')[0];
+        var scale = oNav.clientHeight / oNavList.clientHeight;
+
+        oNavList.style.webkitTransform = oNavList.style.transform = 'scale('+ scale +')';
+    })();
+
+
+</script>
+<!--<script src="js/ListIndex.js"></script>-->
+<script>
+    /*
+    * 1.找到右侧所有的索引
+    * 2.找到左侧所有的索引（dt）
+    * 3.添加左右两侧的关联
+    * 4.在右侧滑动或者点击，手指触碰某个索引，滚动条就滚动至左侧对应的dt所在的装置
+    * */
+
+    (function (){
+        var indexs = document.querySelectorAll('[data-indexList]');
+        for (var i = 0; i < indexs.length; i++){
+            setIndexList(indexs[i]);
+        }
+
+
+        function setIndexList(nav) {
+            var id = nav.dataset.indexlist;
+            var list = document.querySelector(id);
+            var navs = nav.children;
+            var options = list.querySelectorAll('dt');
+
+            /* 阻止在nav上手指移动滚动条跟随滚动 */
+            nav.addEventListener('touchstart', function (e) {
+                e.preventDefault();
+            });
+
+            /* 添加索引和列表的关联 */
+            for (var i = 0; i < options.length; i++){
+                options[i].dataset.id = options[i].innerHTML;
+            }
+
+
+            /* 给nav添加手指触碰 */
+            nav.addEventListener('touchstart', function(e) {
+                toScroll(e);
+            });
+
+            nav.addEventListener('touchmove', function(e) {
+                toScroll(e);
+            });
+
+            nav.addEventListener('touchend', function(e) {
+                for ( var i = 0; i < navs.length; i++){
+                    navs[i].className = '';
+                }
+            });
+
+            function toScroll (e) {
+                //获取当前按下的索引
+                var index = getIndex(e);
+                if( !index ) return;
+
+                //获取当前按下的dt
+                var dt = getDt(index);
+                if(!dt) return;
+                for ( var i = 0; i < navs.length; i++){
+                    navs[i].className = '';
+                }
+                index.className = 'focus';
+
+                //获取dt在整个页面上的位置
+                var scrollY = getPageY(dt);
+
+                //修改滚动条的位置
+                window.scrollTo(0, scrollY)
+
+            }
+
+            /* 通过坐标方向定位，当前的位置是哪个索引 */
+            function getIndex (e) {
+                var y = e.changedTouches[0].clientY;
+
+                for (var i = 1; i < navs.length; i++) {
+                    if(navs[i].children.length < 1) {
+                        var rect = navs[i].getBoundingClientRect();
+                        if(rect.top <= y && rect.bottom >= y) {
+                            return navs[i];
+                        }
+                    }
+                }
+                return null;
+            }
+
+            /* 根据索引获取对应的DT */
+            function getDt(index) {
+                var id = index.innerHTML;
+                var dt = list.querySelector('[data-id='+ id +']');
+
+                if( !dt ) {
+                    var next = index.nextElementSibling;
+                    if(next) {
+                        return getDt(next);
+                    }else{
+                        return null;
+                    }
+                }
+                return dt;
+            }
+
+            /* 获取元素在页面上的绝对坐标 */
+            function getPageY (el) {
+                return el.getBoundingClientRect().top + window.scrollY;
+            }
+
+        }
+    }) ()
+
+</script>
+</body>
+</html>

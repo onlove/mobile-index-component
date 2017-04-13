@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=n0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<dl class="list" id="list"></dl>
+<nav id="nav" class="nav">
+    <ul class="navList" data-indexList="#list">
+        <li>
+            <span class="ico"></span>
+        </li>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+        <li>E</li>
+        <li>F</li>
+        <li>G</li>
+        <li>H</li>
+        <li>I</li>
+        <li>J</li>
+        <li>K</li>
+        <li>L</li>
+        <li>M</li>
+        <li>N</li>
+        <li>O</li>
+        <li>P</li>
+        <li>Q</li>
+        <li>R</li>
+        <li>S</li>
+        <li>T</li>
+        <li>U</li>
+        <li>V</li>
+        <li>W</li>
+        <li>X</li>
+        <li>Y</li>
+        <li>Z</li>
+    </ul>
+</nav>
+
+<script>
+    (function () {
+        var oNav = document.getElementById('nav');
+        var oNavList = oNav.querySelectorAll('.navList')[0];
+        var scale = oNav.clientHeight / oNavList.clientHeight;
+
+        oNavList.style.webkitTransform = oNavList.style.transform = 'scale('+ scale +')';
+    })();
+
+
+</script>
+<!--<script src="js/ListIndex.js"></script>-->
+<script src="js/pinyin.js"></script>
+<script src="js/data.js"></script>
+<script>
+
+    /* 添加相应的数据 */
+    (function() {
+        /* 分类 */
+        var name = {};
+
+        for(var i = 0; i < data.length; i++) {
+            var firstLetter = pinyin.getCamelChars(data[i])[0];
+            if(!(firstLetter in name)) {
+                name[firstLetter] = [];
+            }
+            name[firstLetter].push(data[i]);
+        }
+
+
+        //排序
+        var keys = Object.keys(name);
+        keys.sort();
+        //生成元素
+        var list = document.querySelector("#list");
+        for (var i = 0; i < keys.length; i++) {
+            var dt = document.createElement('dt');
+            dt.innerHTML = keys[i];
+            list.appendChild(dt);
+
+            for(var j = 0; j < name[keys[i]].length; j++){
+                var dd = document.createElement('dd');
+                dd.innerHTML = '<span class="avator"><span class="img">'+ name[keys[i]][j] +'</span></span>'+ name[keys[i]][j];
+                list.appendChild(dd);
+            }
+        }
+    })();
+
+    /*
+    * 1.找到右侧所有的索引
+    * 2.找到左侧所有的索引（dt）
+    * 3.添加左右两侧的关联
+    * 4.在右侧滑动或者点击，手指触碰某个索引，滚动条就滚动至左侧对应的dt所在的装置
+    * */
+
+    (function (){
+        var indexs = document.querySelectorAll('[data-indexList]');
+        for (var i = 0; i < indexs.length; i++){
+            setIndexList(indexs[i]);
+        }
+
+
+        function setIndexList(nav) {
+            var id = nav.dataset.indexlist;
+            var list = document.querySelector(id);
+            var navs = nav.children;
+            var options = list.querySelectorAll('dt');
+
+            /* 阻止在nav上手指移动滚动条跟随滚动 */
+            nav.addEventListener('touchstart', function (e) {
+                e.preventDefault();
+            });
+
+            /* 添加索引和列表的关联 */
+            for (var i = 0; i < options.length; i++){
+                options[i].dataset.id = options[i].innerHTML;
+            }
+
+
+            /* 给nav添加手指触碰 */
+            nav.addEventListener('touchstart', function(e) {
+                toScroll(e);
+            });
+
+            nav.addEventListener('touchmove', function(e) {
+                toScroll(e);
+            });
+
+            nav.addEventListener('touchend', function(e) {
+                for ( var i = 0; i < navs.length; i++){
+                    navs[i].className = '';
+                }
+            });
+
+            function toScroll (e) {
+                //获取当前按下的索引
+                var index = getIndex(e);
+                if( !index ) return;
+
+                //获取当前按下的dt
+                var dt = getDt(index);
+                if(!dt) return;
+                for ( var i = 0; i < navs.length; i++){
+                    navs[i].className = '';
+                }
+                index.className = 'focus';
+
+                //获取dt在整个页面上的位置
+                var scrollY = getPageY(dt);
+
+                //修改滚动条的位置
+                window.scrollTo(0, scrollY)
+
+            }
+
+            /* 通过坐标方向定位，当前的位置是哪个索引 */
+            function getIndex (e) {
+                var y = e.changedTouches[0].clientY;
+
+                for (var i = 1; i < navs.length; i++) {
+                    if(navs[i].children.length < 1) {
+                        var rect = navs[i].getBoundingClientRect();
+                        if(rect.top <= y && rect.bottom >= y) {
+                            return navs[i];
+                        }
+                    }
+                }
+                return null;
+            }
+
+            /* 根据索引获取对应的DT */
+            function getDt(index) {
+                var id = index.innerHTML;
+                var dt = list.querySelector('[data-id='+ id +']');
+
+                if( !dt ) {
+                    var next = index.nextElementSibling;
+                    if(next) {
+                        return getDt(next);
+                    }else{
+                        return null;
+                    }
+                }
+                return dt;
+            }
+
+            /* 获取元素在页面上的绝对坐标 */
+            function getPageY (el) {
+                return el.getBoundingClientRect().top + window.scrollY;
+            }
+
+        }
+    }) ()
+
+</script>
+</body>
+</html>
